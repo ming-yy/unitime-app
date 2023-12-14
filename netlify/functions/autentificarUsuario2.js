@@ -37,12 +37,17 @@ export default async (req, context) => {
       const usuario = await collection.find({}).toArray();
       console.log("d!");
       console.log(usuario);
+
+      database.close();      // Close connection to database to close function
+      
       if (usuario && usuario['password'] == contrasenya.toString()) {
          return new Response("Ok");
       }
+      
       const myBlob = new Blob();
       const myOptions = { status: 200, statusText: "SuperSmashingGreat!" };
       const myResponse = new Response(myBlob, myOptions);
+      return myResponse;
 
    } catch (error) {
       return { statusCode: 500, body: error.toString() }
