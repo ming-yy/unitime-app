@@ -46,11 +46,12 @@ export default async (req, context) => {
       
       const myBlob = new Blob();
       const myOptions = { status: 200, statusText: "SuperSmashingGreat!" };
-      const myResponse = new Response(myBlob, myOptions);
-      return myResponse;
+      return new Response(myBlob, myOptions);
 
    } catch (error) {
-      return { statusCode: 500, body: error.toString() }
+      const myBlob = new Blob();
+      const myOptions = { status: 500, statusText: error.toString() };
+      return new Response(myBlob, myOptions);
    }
 };
   
