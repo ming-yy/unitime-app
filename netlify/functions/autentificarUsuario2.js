@@ -9,7 +9,7 @@ const clientPromise = mongoClient.connect();
 
 export default async (req, context) => {
    console.log("DENTRO!")
-   console.log(req);
+   //console.log(req);
    console.log(req.body);
 
    const contenido = req.json();
