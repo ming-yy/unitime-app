@@ -18,20 +18,25 @@ export default async (req, context) => {
    
    email = contenido['email'];
    contrasenya = contenido['password'];
-
+   console.log(email);
+   console.log(contrasenya);
+   
    try {
       console.log("a!")
       const database = (await clientPromise).db('appHorario');
       console.log("b!")
       const collection = database.collection('users');
       console.log("c!")
-
+      /*
       const usuario = await collection.find_one({email: email.toString()}, function (err, result) {
          if (err) throw err;
          console.log(result.name);
          database.close();
       });
-      console.log("d!")
+      */
+      const usuario = await collection.find({}).toArray();
+      console.log("d!");
+      console.log(usuario);
       if (usuario && usuario['password'] == contrasenya.toString()) {
          return true;
       }
