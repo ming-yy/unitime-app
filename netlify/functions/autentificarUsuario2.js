@@ -9,12 +9,9 @@ const clientPromise = mongoClient.connect();
 
 export default async (req, context) => {
    console.log("DENTRO!")
-   //console.log(req);
-   //console.log(req.body);
 
    const contenido = await req.json();
    console.log(contenido)
-   //console.log(contenido['email']);
    
    email = contenido['email'];
    contrasenya = contenido['password'];
@@ -35,7 +32,7 @@ export default async (req, context) => {
             throw new Response(myBlob, myOptions);
          };
          console.log(result.name);
-         database.close();
+         //database.close();
       });
       /*
       const usuario = await collection.find({}).toArray();
@@ -43,7 +40,7 @@ export default async (req, context) => {
       console.log("d!");
       console.log(usuario);
 
-      database.close();      // Close connection to database to close function
+      //database.close();      // Close connection to database to close function
       
       if (usuario && usuario['password'] == contrasenya.toString()) {
          return new Response("Ok");
@@ -54,7 +51,7 @@ export default async (req, context) => {
       return new Response(myBlob, myOptions);
 
    } catch (error) {
-      database.close();      // Close connection to database to close function
+      //database.close();      // Close connection to database to close function
       const myBlob = new Blob();
       const myOptions = { status: 500, statusText: error.toString() };
       return new Response(myBlob, myOptions);
