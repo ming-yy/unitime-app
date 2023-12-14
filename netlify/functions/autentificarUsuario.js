@@ -45,12 +45,14 @@
             console.log(usuario);
             
             if (usuario && usuario['password'] == contrasenya.toString()) {
+                console.log("Usuario autentificado correctamente");
                 const myBlob = new Blob(JSON.stringify({ executed: true, user: usuario}),
                                 {type: "application/json",});
                 const myOptions = { status: 200, statusText: "SuperSmashingGreat!" };
                 return new Response(myBlob, myOptions);
             }
             
+            console.log("Usuario no autentificado correctamente");
             const myBlob = new Blob(JSON.stringify({ executed: true, user: usuario}),
                                                     {type: "application/json",});
             const myOptions = { status: 200, statusText: "SuperSmashingGreat!" };
@@ -58,7 +60,8 @@
 
         } catch (error) {
             mongoClient.close();  // Close connection to avoid timeout
-            
+
+            console.log("Error en consulta");
             const myBlob = new Blob(JSON.stringify({ executed: false}),
                                 {type: "application/json",});
             const myOptions = { status: 500, statusText: error.toString() };
