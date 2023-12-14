@@ -10,9 +10,9 @@ const clientPromise = mongoClient.connect();
 export default async (req, context) => {
    console.log("DENTRO!")
    //console.log(req);
-   console.log(req.body);
+   //console.log(req.body);
 
-   const contenido = req.json();
+   const contenido = await req.json();
    console.log(contenido)
    //console.log(contenido['email']);
    
