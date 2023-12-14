@@ -8,11 +8,13 @@ const clientPromise = mongoClient.connect();
 
 
 export default async (req, context) => {
+   console.log("DENTRO!")
    console.log(req);
    console.log(req.body);
 
    const contenido = req.json();
-   console.log(contenido['email']);
+   console.log(contenido)
+   //console.log(contenido['email']);
    
    email = contenido['email'];
    contrasenya = contenido['password'];
