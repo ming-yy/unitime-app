@@ -38,9 +38,11 @@ export default async (req, context) => {
       console.log("d!");
       console.log(usuario);
       if (usuario && usuario['password'] == contrasenya.toString()) {
-         return true;
+         return new Response("Ok");
       }
-      return false;
+      const myBlob = new Blob();
+      const myOptions = { status: 200, statusText: "SuperSmashingGreat!" };
+      const myResponse = new Response(myBlob, myOptions);
 
    } catch (error) {
       return { statusCode: 500, body: error.toString() }
