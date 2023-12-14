@@ -26,7 +26,11 @@ export default async (req, context) => {
       const collection = database.collection('users');
       console.log("c!")
 
-      const usuario = await collection.find_one({"email": email.toString()});
+      const usuario = await collection.find_one({email: email.toString()}, function (err, result) {
+         if (err) throw err;
+         console.log(result.name);
+         database.close();
+      });
       console.log("d!")
       if (usuario && usuario['password'] == contrasenya.toString()) {
          return true;
