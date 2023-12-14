@@ -20,10 +20,14 @@ export default async (req, context) => {
    contrasenya = contenido['password'];
 
    try {
+      console.log("a!")
       const database = (await clientPromise).db('appHorario');
+      console.log("b!")
       const collection = database.collection('users');
+      console.log("c!")
 
       const usuario = collection.find_one({"email": email.toString()});
+      console.log("d!")
       if (usuario && usuario['password'] == contrasenya.toString()) {
          return true;
       }
