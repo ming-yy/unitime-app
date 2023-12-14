@@ -28,8 +28,12 @@ export default async (req, context) => {
       const collection = database.collection('users');
       console.log("c!")
       
-      const usuario = await collection.find_one({email: email.toString()}, function (err, result) {
-         if (err) throw err;
+      const usuario = await collection.findOne({email: email.toString()}, function (err, result) {
+         if (err) {
+            const myBlob = new Blob();
+            const myOptions = { status: 500, statusText: err.toString() };
+            throw new Response(myBlob, myOptions);
+         };
          console.log(result.name);
          database.close();
       });
