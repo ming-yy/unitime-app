@@ -27,14 +27,15 @@ export default async (req, context) => {
       console.log("b!")
       const collection = database.collection('users');
       console.log("c!")
-      /*
+      
       const usuario = await collection.find_one({email: email.toString()}, function (err, result) {
          if (err) throw err;
          console.log(result.name);
          database.close();
       });
-      */
+      /*
       const usuario = await collection.find({}).toArray();
+      */
       console.log("d!");
       console.log(usuario);
 
@@ -49,6 +50,7 @@ export default async (req, context) => {
       return new Response(myBlob, myOptions);
 
    } catch (error) {
+      database.close();      // Close connection to database to close function
       const myBlob = new Blob();
       const myOptions = { status: 500, statusText: error.toString() };
       return new Response(myBlob, myOptions);
