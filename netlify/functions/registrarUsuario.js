@@ -31,7 +31,7 @@ export default async (req, context) => {
 
         const result = await collection.insertOne(usuario);
 
-        clientPromise.close();  // Close connection to avoid timeout
+        mongoClient.close();  // Close connection to avoid timeout
 
         if (result['acknowledged'] == true) {
             console.log("Usuario introducido");
@@ -48,7 +48,7 @@ export default async (req, context) => {
         }
 
     } catch (error) {
-        clientPromise.close();  // Close connection to avoid timeout
+        mongoClient.close();  // Close connection to avoid timeout
 
         const myBlob = new Blob(JSON.stringify({ executed: false}),
                                     {type: "application/json",});
