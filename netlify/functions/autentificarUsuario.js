@@ -39,7 +39,7 @@
             /*
             const usuario = await collection.find({}).toArray();
             */
-            clientPromise.close();  // Close connection to avoid timeout
+            mongoClient.close();  // Close connection to avoid timeout
 
             console.log("d!");
             console.log(usuario);
@@ -57,7 +57,7 @@
             return new Response(myBlob, myOptions);
 
         } catch (error) {
-            clientPromise.close();  // Close connection to avoid timeout
+            mongoClient.close();  // Close connection to avoid timeout
             
             const myBlob = new Blob(JSON.stringify({ executed: false}),
                                 {type: "application/json",});
