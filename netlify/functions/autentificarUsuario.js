@@ -46,8 +46,9 @@
             
             if (usuario && usuario['password'] == contrasenya.toString()) {
                 console.log("Usuario autentificado correctamente");
-                const myBlob = new Blob(JSON.stringify({ executed: true, user: usuario}),
-                                {type: "application/json",});
+                const myBlob = new Blob();
+                //const myBlob = new Blob(JSON.stringify({ executed: true, user: usuario}),
+                //                {type: "application/json",});
                 const myOptions = { status: 200, statusText: "SuperSmashingGreat!" };
                 return new Response(myBlob, myOptions);
             }
