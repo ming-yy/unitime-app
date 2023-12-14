@@ -20,7 +20,7 @@ export default async (req, context) => {
 
         console.log("Usuario found:", usuario);
         
-        clientPromise.close();  // Close connection to avoid timeout
+        mongoClient.close();  // Close connection to avoid timeout
 
         if (usuario) {
             const myBlob = new Blob(JSON.stringify({ executed: true, user: usuario}),
@@ -36,7 +36,7 @@ export default async (req, context) => {
 
     } catch (error) {
         console.error("Error occurred:", error);
-        clientPromise.close();  // Close connection to avoid timeout
+        mongoClient.close();  // Close connection to avoid timeout
 
         const myBlob = new Blob(JSON.stringify({ executed: false, user: null}),
                                 {type: "application/json",});
